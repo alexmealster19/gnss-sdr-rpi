@@ -1,0 +1,25 @@
+bgrg-pi@raspberrypi:~ $ sudo mkdir /stable-chroot
+bgrg-pi@raspberrypi:~ $ sudo debootstrap stable /stable-chroot http://deb.debian.org/debian/
+I: Target architecture can be executed
+W: Cannot check Release signature; keyring file not available /usr/share/keyrings/debian-archive-keyring.gpg
+I: Retrieving InRelease 
+I: Retrieving Packages 
+I: Validating Packages 
+
+
+
+
+
+
+
+bgrg-pi@raspberrypi:~ $ chroot /stable-chroot
+chroot: cannot change root directory to '/stable-chroot': Operation not permitted
+bgrg-pi@raspberrypi:~ $ sudo chroot /stable-chroot
+bash: warning: setlocale: LC_ALL: cannot change locale (en_US.UTF-8)
+root@raspberrypi:/# pwd
+/
+root@raspberrypi:/# ls
+bin   dev  home  media	opt   root  sbin  sys  usr
+boot  etc  lib	 mnt	proc  run   srv   tmp  var
+root@raspberrypi:/# cat /etc/os-release
+PRETTY_NAME="Debian GNU/Linux 11 (bullseye)"
