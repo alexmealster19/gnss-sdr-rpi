@@ -23,3 +23,26 @@ bin   dev  home  media	opt   root  sbin  sys  usr
 boot  etc  lib	 mnt	proc  run   srv   tmp  var
 root@raspberrypi:/# cat /etc/os-release
 PRETTY_NAME="Debian GNU/Linux 11 (bullseye)"
+
+
+
+DAY #2
+
+To get back into the chroot I type 
+
+sudo chroot /stable-chroot
+
+However in order to mount usb devices had to run some commands from the home folder (not the chroot)
+Make sure when you run these in the base folder / (i.e. hit cd .. like 12 times)
+
+sudo mount --bind /dev stable-chroot/dev
+sudo chroot stable-chroot mount -t sysfs none /sys
+sudo chroot stable-chroot mount -t proc none /proc
+sudo chroot stable-chroot mount -t tmpfs none /dev/shm
+sudo chroot stable-chroot mount -t devpts none /dev/pts
+
+Now it is willing to interact with usb devices from the chroot (can find hackrf)
+
+I did make install on gnss-sdr to make it easier to deal with
+Now going to test it with old data, then install the monitor, then go do some testing
+
