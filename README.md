@@ -47,4 +47,31 @@ There are three different scenarios that I will discuss in this github. There is
 This is the most basic and easiest case to run. I recomend going through this process even if you don't need to process old data. First thing is downloading the data. If you cloned this repository then it will be in the gnss-sdr-rpi folder. 
 
 ### Real time signals from the ground
-This is a really exciting scenario! For this case you will have to take your setup outside and obtain your actual position fix! In terms of physical set up you will need a raspberry pi with gnss-sdr installed, a hackRF, an oscialltor and an antenna. See the hardware section below for information on each hardware component. With the raspberry pi connected to power, plug the hackrf into one of the usb ports using the given cable. Run the command ```hackrf_info``` to ensure connection. It should output that it found the board and some basic information about your hackrf. If it outputs board not found check your connection. If it says there is no hackrf_info command then install hackrf using ```apt install hackrf```. 
+This is a really exciting scenario! For this case you will have to take your setup outside and obtain your actual position fix! In terms of physical set up you will need a raspberry pi with gnss-sdr installed, a hackRF, an oscialltor and an antenna. See the hardware section below for information on each hardware component. 
+
+With the raspberry pi connected to power, plug the hackrf into one of the usb ports using the given cable. Run the command ```hackrf_info``` to ensure connection. It should output that it found the board and some basic information about your hackrf. If it outputs board not found check your connection. If it says there is no hackrf_info command then install hackrf using ```apt install hackrf```. 
+
+Unplug the hackrf from the pi and connect the oscillator and the antenna. The antenna will connect via SMA connctor to the antenna port on the hackRF. The osciallator will connect to the CLCKIN port on the hackrf. NOTE: The oscialltor must be powered by 3.3 volt and ground wires. I got this from a beaglebones connected to my latop however this should work with power running from the pi. 
+
+Reconnect the pi to power. Check the hackrf connection using ```hackrf_info``` again. You will now run gnss-sdr using the configartion file created for this scenario. From the gnss-sdr-rpi file run
+
+```gnss-srd --configuration_file=test.conf```
+
+This will begin the process of looking for satellites. Make sure you are in an open area with a clear line of sight to the sky. The output should say which satellite it's currently looking for. Eventually, gps data should stream in and give you a position fix (typically happens in less than 5 minutes). The test.conf file is the config file being used in this case scenario and there are many edits that can be made to it to alter the performance. For example, for users in Atlanta, you can uncomment the three lines following ```;Atlanta Scenario``` which will assume an intial starting point of Atlanta, GA. You can edit the lat, lon and alt to your location to increase the efficiency of the position fix. Also, if you plan to use gnss-sdr-monitor you can uncomment the last 7 lines of code. 
+
+### In Orbit Scenario
+
+The most exciting sceanrio is the in space condition of course. NOTE: This has only been tested using GPS simulators and has not been tested in space yet. The only difference in operations between the ground scenario and the space scenario is the configuration file. The configuation file will have a couple of minor changes including a larger doppler range and altered power inputs. To run for an in orbit scenario run:
+
+```gnss-srd --configuration_file=InOrbit.conf```
+
+NOTE: The InOrbit.conf file is still being worked on and should be used with caution for the time being. 
+
+## Hardware 
+### Oscillator
+### HackRf
+#### Raspberry Pi
+#### Raspberry Pi 4
+#### Raspberry Pi Zero
+#### Raspberry Pi CM4 Module
+### Antenna
