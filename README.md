@@ -70,7 +70,7 @@ NOTE: The InOrbit.conf file is still being worked on and should be used with cau
 ## Hardware 
 ### Oscillator
 ### HackRf
-#### Raspberry Pi
+### Raspberry Pi
 #### Raspberry Pi 4
 #### Raspberry Pi Zero
 #### Raspberry Pi CM4 Module
