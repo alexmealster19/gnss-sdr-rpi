@@ -123,9 +123,3 @@ PVT.kml_output_path=gnss-products-noInitialData/kml
 PVT.xml_output_path=gnss-products-noInitialData/xml
 PVT.rinex_output_path=gnss-products-noInitialData/rinex
 PVT.nmea_output_file_path=gnss-products-noInitialData/nmea
-
-
-Monitor.enable_monitor=true
-Monitor.decimation_factor=1
-Monitor.client_addresses=127.0.0.1
-Monitor.udp_port=2112
