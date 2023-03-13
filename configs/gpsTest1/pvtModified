@@ -127,14 +127,6 @@ PVT.rinex_output_path=gnss-products/rinex
 PVT.nmea_output_file_path=gnss-products/nmea
 
 
-;######### MONITOR CONFIG #########
-Monitor.enable_monitor=true
-Monitor.decimation_factor=1
-Monitor.client_addresses=127.0.0.1
-Monitor.udp_port=2113
 
-;######### GLOBAL OPTIONS #########
-GNSS-SDR.telecommand_enabled=true
-GNSS-SDR.telecommand_tcp_port=3333
 
 
