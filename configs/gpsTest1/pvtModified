@@ -119,12 +119,12 @@ PVT.kml_output_enabled=true
 PVT.xml_output_enabled=true
 PVT.rinex_output_enabled=true
 PVT.nmea_output_file_enabled=true
-PVT.output_path=gnss-products/others
-PVT.gpx_output_path=gnss-products/gpx
-PVT.kml_output_path=gnss-products/kml
-PVT.xml_output_path=gnss-products/xml
-PVT.rinex_output_path=gnss-products/rinex
-PVT.nmea_output_file_path=gnss-products/nmea
+PVT.output_path=gnss-products-pvtModified/others
+PVT.gpx_output_path=gnss-products-pvtModified/gpx
+PVT.kml_output_path=gnss-products-pvtModified/kml
+PVT.xml_output_path=gnss-products-pvtModified/xml
+PVT.rinex_output_path=gnss-products-pvtModified/rinex
+PVT.nmea_output_file_path=gnss-products-pvtModified/nmea
 
 
 
