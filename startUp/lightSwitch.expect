@@ -1,0 +1,16 @@
+#!/usr/bin/expect -f
+
+# Check if GNSS-SDR is already running
+set gnss_sdr_running [catch {set pid [exec pgrep gnss-sdr]}]
+
+if {!$gnss_sdr_running} {
+  puts "GNSS-SDR is already running. Stopping GNSS-SDR."
+  exec kill $pid
+  exit 0
+} else {
+  puts "Starting GNSS-SDR."
+  spawn gnss-sdr
+  expect "Press 'q' to quit"
+  send "q\r"
+  exit 0
+}
