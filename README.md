@@ -18,7 +18,7 @@ The Raspberry Pi 4 (or Pi4) has been used for the majority of GNSS-SDR testing. 
 The Pi4 has enough RAM to get a position fix, however there are times where CPU becomes overloaded. The user will know this is happening when GNSS-SDR begins outputting zeros. This can be mitigated by changing the number of satellites in acquisition in the GNSS-SDR config file (see software section).
 
 #### CM4
-The CM4 has the same chip as the Pi4 therefore the performance is the same. However, the CM4 has a much smaller form factor and is more dificult to interface with. However, due to its small size it will be flown on OrCa2. To interface with the CM4, there are different IO boards. The IO board we have used for testing has ethernet, HDMI, and USB ports. The CM4 is typically located on the IO board in the clear bin in 
+The CM4 has the same chip as the Pi4 therefore the performance is the same. However, the CM4 has a much smaller form factor and is more dificult to interface with. However, due to its small size it will be flown on OrCa2. To interface with the CM4, there are different IO boards. The IO board we have used for testing has ethernet, HDMI, and USB ports. The CM4 is typically located on the IO board in the clear bin in the back room of the lab.
 #### Raspberry Pi Zero
 The Pi Zero was thouroughly tested for GNSS-SDR however there was not enough RAM to get a position fix. 
 #### BeagleBones Black
@@ -30,15 +30,19 @@ An SDR periphreal is a device that when paired with a computer can act as an SDR
 #### HackRF
 The SDR mainly considered for this project is the HackRF by great Scott gadgets. The HackRF is cheap and easy to obtain. Plus it has a wide range of receiving and transmitting frequencies. For the purposes of this payload, the HackRF can be considered a plug and play. There is not need for additional setup. The HackRF is powered by and passed information through the microUSB port. The HackRF connects to an antenna and an oscialltor via SMA ports. 
 #### RTL-SDR Dongle
-The RTL-SDR dongle can be thought of as both a backup to the HackRF, in case there is an error with the HackRF, or as a great testing device. The mian differences between the RTL-SDR dongle and the hackRF are: RTL-SDR dongle is smaller, significantly cheaper and can only receive signals / can't transmit. Additionally, the oscialltor in the RTL-SDR dongle is precise enough for GPS fixes, unlike the HackRF which requires an external oscillator.
+The RTL-SDR dongle can be thought of as both a backup to the HackRF, in case there is an error with the HackRF, or as a great testing device. The main differences between the RTL-SDR dongle and the hackRF are: RTL-SDR dongle is smaller, significantly cheaper and can only receive signals / can't transmit. Additionally, the oscialltor in the RTL-SDR dongle is precise enough for GPS fixes, unlike the HackRF which requires an external oscillator.
 
 ### Oscillator 
 #### LOTUS TCXO
+The only oscillator that has been used succesfully in this project is the LOTUS temparture controlled crystal oscillator. The oscillator provided a steady signal for the SDR which allows for GPS signal correlation. Using the TCXO is very simple and can be viewed as plug and play. The output signal is transmitted via a SMA cable that runs to the clock in port of the hackRF. The TCXO is powered via a +3.3v and ground terminal. 
 ### Antenna
+The antenna receives the L1 signals from the GPS satellites and makes a position fix possible. 
 #### Magnetic GPS Antenna
-Make sure that when using a Magnetic GPS antenna that you are grounding the anetenna by placing it on a ferris metal surface. 
+Make sure that when using a Magnetic GPS antenna that you are grounding the anetenna by placing it on a ferris metal surface. This antenna is great for outdoor testing since it will not be flying.  
 #### Tallysman Patch Antenna 
+This is the antenna that will be flying on board OrCa2. The antenna has a 28 dB gain and requires a voltage bias. How to send a voltage bias will be discussed in the GNSS-SDR configurations section.   
 #### In Line LNA
+The in line Low Noise Amplifier (LNA) is used as part of a testing set up with the GPS simulator. Since the GPS simulator sends signlas directly into the hackRF without an antenna the impact of the antenna's LNA is unaccounted for. In order to account for the gain, an in line LNA can be placed in between the GPS simulator and the hackRF to increase the gain of the signal similarly to the antenna. The in line LNA has a gain of 25dB which is less than the antenna so the additional 3dB of gain can be accounted for via the GPS simulator.  
 
 ## Software: GNSS-SDR
 The GNSS-SDR software is very well documented and open source. The program utilizes GNU radio and allows users to alter the GPS receiver configuartion through a single text file. 
@@ -77,12 +81,20 @@ To check that it installed properly run `gnss-sdr --version`. If you get back `g
 
 
 ### GNSS-SDR Configurations
+
+#### Voltage Bias
+#### PVT Model
+#### File Output Architecture 
+#### Signal Acquisition
+
 ### Custom Bash Script for Testing
+
 ### Run Software 
 
 ## Testing
 ### Flat Sat
 ### GPS Simulator
+
 ### Real Time
 
 ## Performance
