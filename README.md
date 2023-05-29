@@ -81,11 +81,18 @@ To check that it installed properly run `gnss-sdr --version`. If you get back `g
 
 
 ### GNSS-SDR Configurations
+One of the best aspects of GNSS-SDR is the use of a .config file to configure the SDR receiver. The config file allows for the user to determine what type of data is being read in, the voltage being sent to the antenna, the frequency band being searched and much more. In the following sections I will describe the different configuration files I've created and the differences between them. You can find these configuartions in this repository under configs. If you want to understand more about GNSS-SDR configurations check [here](https://gnss-sdr.org/docs/sp-blocks/). 
 
-#### Voltage Bias
-#### PVT Model
-#### File Output Architecture 
-#### Signal Acquisition
+#### rtl.conf
+This configuration is used to run GNSS-SDR using an RTL-SDR dongle. The configuration has to be modified to account for the SDR periphreal being different from a hackRF. This configuration should only be used with the RTL-SDR dongle which I recomend using for any necessary outdoor real time testing.
+#### realTime.conf
+This configuration is for real time GPS fixes from the surface of the Earth using a hackRF. Good for testing but should only be used for hardware validation since the configuratioon in orbit is very different. Will require a bias voltage, antenna and oscillator. The voltage bias is sent to the antenna via the hackRF using this line in the config file 
+```
+SignalSource.osmosdr_args=rtl,bias=1
+```
+#### postProcessed.conf
+#### inOrbit.conf
+#### gpsSim.conf
 
 ### Custom Bash Script for Testing
 
