@@ -97,8 +97,25 @@ The post processed config file takes only GPS signal data and performs a GPS fix
 SignalSource.implementation=File_Signal_Source
 SignalSource.filename=/home/Mealey/work/2013_04_04_GNSS_SIGNAL_at_CTTC_SPAIN/2013_04_04_GNSS_SIGNAL_at_CTTC_SPAIN.dat
 ```
-#### inOrbit.conf
+#### InOrbit.conf
+As its name implies, the InOrbit.conf file is the configuration for OrCa2 while in orbit. This file is different in a few key ways. Firstly, the range of signals that the SDR looks for, dictated by the doppler shift, must be much greater since the relative velocites are greater in orbit than on the ground. This value is dictated in the config file by the line 
+```
+Acquisition_1C.doppler_max=
+```
+
+The reason the value is currently not set is that the Doppler value could be used to back out certain orbital parameters of OrCa2's orbit. Thus the file InOrbit.conf in the secure server has the correct value.
+
+The other way that InOrbit.conf differs is by the number of satellites that the SDR will actively try to acquire at one time. The greater the number the faster a position fix is acheived but also the more processing power required from the computer. Thus, since the CM4 is the computer being flown the number of satellites in acquisition has been reduced to 2 to ensure the cmputer is not overloaded. This value is set in the config file by the line 
+```
+Channels.in_acquisition=2
+```
+
+
 #### gpsSim.conf
+This configuration is meant to be used when testing with the GPS simulator. The gpsSim.conf file is almost exactly the same as the InOrbit.conf file. The only difference is that there is no bias being sent to the antenna since no antenna is used when testing on the simulator and it can be dangerous to send voltage into the expensive GPS simulator. Thus the line of code below is implemented. 
+```
+SignalSource.osmosdr_args=hackrf,bias=0
+```
 
 ### Custom Bash Script for Testing
 
