@@ -90,7 +90,13 @@ This configuration is for real time GPS fixes from the surface of the Earth usin
 ```
 SignalSource.osmosdr_args=rtl,bias=1
 ```
+
 #### postProcessed.conf
+The post processed config file takes only GPS signal data and performs a GPS fix on them. Old GPS signal data can be acquired following the steps detailed [here](https://gnss-sdr.org/my-first-fix/) in step 2. The lines the tells the SDR where to look is here 
+```
+SignalSource.implementation=File_Signal_Source
+SignalSource.filename=/home/Mealey/work/2013_04_04_GNSS_SIGNAL_at_CTTC_SPAIN/2013_04_04_GNSS_SIGNAL_at_CTTC_SPAIN.dat
+```
 #### inOrbit.conf
 #### gpsSim.conf
 
