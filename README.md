@@ -117,9 +117,16 @@ This configuration is meant to be used when testing with the GPS simulator. The 
 SignalSource.osmosdr_args=hackrf,bias=0
 ```
 
-### Custom Bash Script for Testing
-
-### Run Software 
+### Custom Bash Script for Testing and Running the software
+I have created a custom bash script that will / stop run gnss-sdr when called. The script will start gnss-sdr when called if the program isn't already running, if the program is running the the script will stop the program. The custom bash script is called sdrPayload.sh in the execute folder. There is a change required to use this script however, the script should be modified to specify which gnss-sdr config you are running. For example, if you want to run the gps simulator config, you should change this line in the code
+```
+gnss-sdr &
+```
+to this (but make sure to change the path so that it matches the correct place in your file system).
+```
+gnss-sdr --config_file=/pathToConfigFile/gpsSim.conf &
+```
+The above line is also how you would run gnss-sdr from the command prompt.
 
 ## Testing
 ### Flat Sat
