@@ -129,11 +129,14 @@ gnss-sdr --config_file=/pathToConfigFile/gpsSim.conf &
 The above line is also how you would run gnss-sdr from the command prompt.
 
 ## Testing
+For testing there are a couple of different hardware and software configurations that should be used for each type of testing. This section will briefly tell you how to combine software and hardware for each testing case. 
+
 ### Flat Sat
+On the flat sat you will be using the CM4, the hackRF, and the antenna (optional). Since the flat sat can not be moved to a location with a GPS signal, then I would use the postProcessed.conf with the old data provided by gnss-sdr (which is described more in the postProcessed.conf section. 
 ### GPS Simulator
+When using the GPS simulator, you can use any combination of SDR and computer but I would recomend using the CM4 with the hackRF. The gpsSim.conf is the proper configuration for the simulator. TO actually use the simulator requires some training but at the end of the day is fairly straightforward. If instructions on how to use the gps simulator are required please email me at amealey3@gatech.edu and I can provide more details. 
 
 ### Real Time
-
-## Performance
+If you want to test the setup by going outside you can use any combination of computer and SDR. However for this lab, DO NOT USE THE CM4. CM4s have been difficult to come by lately and we don't need to damage our CM4 before flight. I'd recomend using a laptop and the RTL-SDR dongle. 
 
 
